@@ -60,7 +60,8 @@ const devConfig = {
     }
   },
   output: {
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/grammar_vectors/'
   },
 
   devtool: 'source-maps'
