@@ -252,20 +252,22 @@ class RootComponent extends React.Component {
                     <text style={{color: 'black'}}>In "Linguistic Regularities," Mikolov et al</text>
                   </a>
                   <br/>
-                  <text>show that there exist vectors which seem</text>
+                  <text>show that there exist vectors in word</text>
                   <br/>
-                  <text>to encode grammar. For instance, </text>
+                  <text>embedding space which seem to encode</text>
+                  <br/>
+                  <text>grammar. For instance,</text>
                   <br/><br/>
                   <text style={{fontWeight: 'bold', textAlign: 'center'}}> Queen - Woman = King - Man</text>
                   <br/><br/>
-                  <text>We found this remarkable! I wondered if</text>
+                  <text>We found this remarkable! We wondered if</text>
                   <br/>
                   <text>doing PCA would </text>
                   <text>allow us to visually</text>
                   <br/>
-                  <text>explore the directions of grammar in</text>
+                  <text>explore grammar vectors in word</text>
                   <br/>
-                  <text>word embedding space.</text>
+                  <text>embedding space... </text>
                   <br/><br/>
                   <text>Happy exploring!</text>
                 </text>
