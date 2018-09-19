@@ -1,5 +1,6 @@
 // const {resolve} = require('path');
 const isProd = process.env.NODE_ENV === 'production'; // eslint-disable-line
+// const isProd = false;
 // const path = require('path');
 const webpack = require('webpack');
 

@@ -2,7 +2,6 @@ import React from 'react';
 import debounce from 'debounce';
 import {csv, json} from 'd3-fetch';
 import {
-  FlexibleXYPlot,
   XYPlot,
   LabelSeries,
   XAxis,
@@ -24,7 +23,6 @@ import {
 import {scaleLinear} from 'd3-scale';
 import Option from 'muicss/lib/react/option';
 import Select from 'muicss/lib/react/select';
-import Appbar from 'muicss/lib/react/appbar';
 import GoChevronLeft from 'react-icons/lib/go/chevron-left';
 import GoChevronRight from 'react-icons/lib/go/chevron-right';
 
@@ -149,6 +147,15 @@ class RootComponent extends React.Component {
         });
       });
 
+    const onWindowResize = d => {
+      this.shorterDebouncedSetState({
+        height: 0.9 * window.innerHeight,
+        width: 0.5 * window.innerWidth
+      });
+    };
+
+    window.addEventListener('resize', onWindowResize);
+
     const handleChangeXAxis = d => {
       this.shorterDebouncedSetState({
         xAxisPcRank: d
@@ -160,10 +167,10 @@ class RootComponent extends React.Component {
         yAxisPcRank: d
       });
     };
-    // height = width = 2200
+    // height = width = 775
     this.setState({
-      height: 775,
-      width: 775,
+      height: 0.9 * window.innerHeight,
+      width: 0.5 * window.innerWidth,
       margin: {left: 35, right: 35, bottom: 35, top: 35},
       markSize: 8,
       xAxisPcRank: 0,
@@ -180,10 +187,12 @@ class RootComponent extends React.Component {
       height, width, margin, markSize, xAxisPcRank, yAxisPcRank, handleChangeXAxis, handleChangeYAxis,
       hoveringOver, clickedOn, whichDataset, titles, legend, fontSizes} = this.state;
 
+
     if (loadingNumbersPcs || loadingNumbersData || loadingGenderPcs || loadingGenderData ||
       loadingTenseData || loadingTensePcs || loadingPluralsData || loadingPluralsPcs) {
       return <div>LOADING DATA</div>;
     }
+
 
     const xAxisPc = pcs[whichDataset][xAxisPcRank].pc;
     const yAxisPc = pcs[whichDataset][yAxisPcRank].pc;
@@ -233,13 +242,6 @@ class RootComponent extends React.Component {
             </div>
           </view>
         </div>
-        {/*
-        <Appbar className="max-width flex flex-row justify-around">
-          <text style={{fontSize: fontSizes.title, textAlign: 'center'}}>
-            {titles[whichDataset]}
-          </text>
-        </Appbar>
-      */}
         <div className="flex flex-row justify-start max-width max-height">
           <div className="flex flex-row justify-evenly fortyfive-width max-height">
             <div className="flex flex-column justify-start max-height">
@@ -292,14 +294,6 @@ class RootComponent extends React.Component {
                   <text style={{textAlign: 'center', fontStyle: 'italic', fontSize: fontSizes.normal}}>
                     how do I get to the {legend[whichDataset].marks} version? </text> <br/>
                 </text>
-              </view>
-              <br/>
-              <view style={{backgroundColor: '#e55d87', padding: 10}}>
-                <a href="https://www.notion.so/rheza/More-on-the-vis-c37abce205fa472bafd0f520685a2786">
-                  <text style={{color: 'white', fontSize: fontSizes.h3, fontStyle: 'italic'}}>
-                    Click here to learn more
-                  </text>
-                </a>
               </view>
             </div>
             <div className="flex flex-column justify-start max-height">
@@ -409,6 +403,13 @@ class RootComponent extends React.Component {
                 <br/>
               </view>
               <br/>
+              <view style={{backgroundColor: '#e55d87', padding: 10}}>
+                <a href="https://www.notion.so/rheza/More-on-the-vis-c37abce205fa472bafd0f520685a2786">
+                  <text style={{color: 'white', fontSize: fontSizes.h3, fontStyle: 'italic'}}>
+                    Click here to learn more
+                  </text>
+                </a>
+              </view>
             </div>
           </div>
           {
